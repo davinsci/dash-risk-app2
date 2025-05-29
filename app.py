@@ -36,6 +36,8 @@ dfP2 = dfP[Perz]
 rename_map = {
     'ALL %': 'ALL',
     'Z1 %': 'Zone 1', 'Z2 %': 'Zone 2', 'Z3 %': 'Zone 3', 'Z4 %': 'Zone 4', 
+    'Z1 Ml %':'Zone 1 Male', 'Z2 Ml %':'Zone 2 Male', 'Z3 Ml %':'Zone 3 Male', 'Z4 Ml %':'Zone 4 Male', 
+    'Z1 Fl %':'Zone 1 Female', 'Z2 Fl %':'Zone 2 Female', 'Z3 Fl %':'Zone 3 Female', 'Z4 Fl %':'Zone 4 Female',
     'Z1 A %':'Zone 1 Age 15-19', 'Z2 A %':'Zone 2 Age 15-19', 
     'Z3 A %':'Zone 3 Age 15-19', 'Z4 A %':'Zone 4 Age 15-19', 
     'Z1 J %':'Zone 1 Age 20-29', 'Z2 J %':'Zone 2 Age 20-29', 
@@ -81,45 +83,62 @@ dimensionz = {
 
 # Translated columns
 for name, df in dimensionz.items():
-    df['Category (EN)'] = df['Category']
+    df['Category (EN)'] = df['Category'].map({
+            'ALL': 'All',
+            'Zone 1': 'Northwest',
+            'Zone 1 Male': 'Northwest Male','Zone 1 Female': 'Northwest Female',
+            'Zone 1 Age 15-19': 'Northwest Age 15-19','Zone 1 Age 20-29': 'Northwest Age 20-29',
+            'Zone 1 Age 30-59': 'Northwest Age 30-59','Zone 1 Age 60+': 'Northwest Age 60+',
+            'Zone 2': 'Northeast',
+            'Zone 2 Male': 'Northeast Male','Zone 2 Female': 'Northeast Female',
+            'Zone 2 Age 15-19': 'Northeast Age 15-19','Zone 2 Age 20-29': 'Northeast Age 20-29',
+            'Zone 2 Age 30-59': 'Northeast Age 30-59','Zone 2 Age 60+': 'Northeast Age 60+',
+            'Zone 3': 'Southwest',
+            'Zone 3 Male': 'Southwest Male','Zone 3 Female': 'Southwest Female',
+            'Zone 3 Age 15-19': 'Southwest Age 15-19','Zone 3 Age 20-29': 'Southwest Age 20-29',
+            'Zone 3 Age 30-59': 'Southwest Age 30-59','Zone 3 Age 60+': 'Southwest Age 60+',
+            'Zone 4': 'Southeast',
+            'Zone 4 Male': 'Southeast Male','Zone 4 Female': 'Southeast Female',
+            'Zone 4 Age 15-19': 'Southeast Age 15-19','Zone 4 Age 20-29': 'Southeast Age 20-29',
+            'Zone 4 Age 30-59': 'Southeast Age 30-59','Zone 4 Age 60+': 'Southeast Age 60+'
+    })
     df['Category (ES)'] = df['Category'].map({
-            'ALL': 'TODO',
-            'Zone 1': 'Zona 1',
-            'Zone 1 Male': 'Zona 1 Hombre','Zone 1 Female': 'Zona 1 Mujer',
-            'Zone 1 Age 15-19': 'Zona 1 Edad 15-19','Zone 1 Age 20-29': 'Zona 1 Edad 20-29',
-            'Zone 1 Age 30-59': 'Zona 1 Edad 30-59','Zone 1 Age 60+': 'Zona 1 Edad 60+',
-            'Zone 2': 'Zona 2',
-            'Zone 2 Male': 'Zona 2 Hombre','Zone 2 Female': 'Zona 2 Mujer',
-            'Zone 2 Age 15-19': 'Zona 2 Edad 15-19','Zone 2 Age 20-29': 'Zona 2 Edad 20-29',
-            'Zone 2 Age 30-59': 'Zona 2 Edad 30-59','Zone 2 Age 60+': 'Zona 2 Edad 60+',
-            'Zone 3': 'Zona 3',
-            'Zone 3 Male': 'Zona 3 Hombre','Zone 3 Female': 'Zona 3 Mujer',
-            'Zone 3 Age 15-19': 'Zona 3 Edad 15-19','Zone 3 Age 20-29': 'Zona 3 Edad 20-29',
-            'Zone 3 Age 30-59': 'Zona 3 Edad 30-59','Zone 3 Age 60+': 'Zona 3 Edad 60+',
-            'Zone 4': 'Zona 4',
-            'Zone 4 Male': 'Zona 4 Hombre','Zone 4 Female': 'Zona 4 Mujer',
-            'Zone 4 Age 15-19': 'Zona 4 Edad 15-19','Zone 4 Age 20-29': 'Zona 4 Edad 20-29',
-            'Zone 4 Age 30-59': 'Zona 4 Edad 30-59','Zone 4 Age 60+': 'Zona 4 Edad 60+'
-
+            'ALL': 'Todo',
+            'Zone 1': 'Norponiente',
+            'Zone 1 Male': 'Norponiente Hombre','Zone 1 Female': 'Norponiente Mujer',
+            'Zone 1 Age 15-19': 'Norponiente Edad 15-19','Zone 1 Age 20-29': 'Norponiente Edad 20-29',
+            'Zone 1 Age 30-59': 'Norponiente Edad 30-59','Zone 1 Age 60+': 'Norponiente Edad 60+',
+            'Zone 2': 'Nororiente',
+            'Zone 2 Male': 'Nororiente Hombre','Zone 2 Female': 'Nororiente Mujer',
+            'Zone 2 Age 15-19': 'Nororiente Edad 15-19','Zone 2 Age 20-29': 'Nororiente Edad 20-29',
+            'Zone 2 Age 30-59': 'Nororiente Edad 30-59','Zone 2 Age 60+': 'Nororiente Edad 60+',
+            'Zone 3': 'Surponiente',
+            'Zone 3 Male': 'Surponiente Hombre','Zone 3 Female': 'Surponiente Mujer',
+            'Zone 3 Age 15-19': 'Surponiente Edad 15-19','Zone 3 Age 20-29': 'Surponiente Edad 20-29',
+            'Zone 3 Age 30-59': 'Surponiente Edad 30-59','Zone 3 Age 60+': 'Surponiente Edad 60+',
+            'Zone 4': 'Suroriente',
+            'Zone 4 Male': 'Suroriente Hombre','Zone 4 Female': 'Suroriente Mujer',
+            'Zone 4 Age 15-19': 'Suroriente Edad 15-19','Zone 4 Age 20-29': 'Suroriente Edad 20-29',
+            'Zone 4 Age 30-59': 'Suroriente Edad 30-59','Zone 4 Age 60+': 'Suroriente Edad 60+'
     })
 
     df['VI (EN)'] = df['VI']
     df['VI (ES)'] = df['VI'].map({
-        'Extreme': 'Extremo', 'High': 'Alto', 'Medium': 'Medio', 'Low': 'Bajo'
+        'Extreme': 'Extrema', 'High': 'Alta', 'Medium': 'Media', 'Low': 'Baja'
     })
     
     df['VI_desc (EN)'] = df['VI (EN)'].map({
-        'Extreme': 'High number of threats, lacks effective means to protect themselves.',
-        'High': 'Exposed to multiple risk factors, limited access to protection mechanisms.',
+        'Extreme': 'Exposure to a high number of threats and lack of means of protection against them.',
+        'High': 'Exposure to multiple risk factors and limited access to protection mechanisms.',
         'Medium': "Some threat factors present, but partial access to means to mitigate them.",
         'Low': 'Certain risks may exist, but threats are neither imminent nor severe.'
     })
     
     df['VI_desc (ES)'] = df['VI (EN)'].map({
-        'Extreme': 'Gran cantidad de amenazas, no cuenta con medios efectivas para protegerse.',
-        'High': 'Expuesta a varios factores de riesgo, acceso limitado a mecanismos de protección.',
-        'Medium': 'Algunos factores de amenaza, pero acceso parcial a medios mitigar dichas amenazas.',
-        'Low': 'Existir ciertos riesgos, pero las amenazas no son inminentes o severas.'
+        'Extreme': 'Existe gran cantidad de amenazas y no se cuenta con medios efectivos para protegersede estas.',
+        'High': 'Exposición a varios factores de riesgo y acceso limitado a mecanismos de protección.',
+        'Medium': 'Existen factores de amenaza y hay acceso parcial a medios para mitigar dichas amenazas.',
+        'Low': 'Existen ciertos riesgos, pero las amenazas no son inminentes o severas.'
     })
     
 translations = {
@@ -130,8 +149,8 @@ translations = {
                      'D4': 'Health Security', 'D5': 'Political Security', 'D6': 'Community Security', 
                      'D7': 'Environmental Security', 'D8': 'Ontological Security', 'D9': 'Technological Security'},
         'components': {
-            'Average': 'Average', 'Exposure': 'Exposure',
-            'Protection': 'Protection', 'Rights': 'Rights'
+            'Average': 'Level of Vulnerability', 'Exposure': 'Level of Exposure to Threats',
+            'Protection': 'Level of Access to Protection Mechanisms', 'Rights': 'Level of Freedom to Exercise Rights'
         }
     },
     '(ES)': {
@@ -141,8 +160,8 @@ translations = {
                      'D4': 'Seguridad Sanitaria', 'D5': 'Seguridad Política', 'D6': 'Seguridad Comunitaria', 
                      'D7': 'Seguridad Ambiental', 'D8': 'Seguridad Ontológica', 'D9': 'Seguridad Tecnológica'},
         'components': {
-            'Average': 'Promedio', 'Exposure': 'Exposición',
-            'Protection': 'Protección', 'Rights': 'Derechos'
+            'Average': 'Nivel de Vulnerabilidad', 'Exposure': 'Nivel de Exposición a Amenazas',
+            'Protection': 'Nivel de Acceso a Mecanismos de Protección', 'Rights': 'Nivel de Libertad para Ejercer Derechos'
         }
     }
 }
@@ -161,13 +180,13 @@ intro_descriptions = {
 
 component_descriptions = {
     '(EN)': {
-        'Average': 'An aggregate of all indicators across components.',
+        'Average': 'Weighted average of scores for exposure to threats, access to protection, and freedom to exercise rights.',
         'Exposure': 'Exposure to threats: How exposed was the person to factors and situations that endangered their life, livelihood, or rights?',
         'Protection': 'Access to protection mechanisms: How accessible and effective were the resources, services, or support systems to protect against or recover from those threats?',
         'Rights': 'Freedom to exercise rights: To what extent was the person able to fully and freely exercise their rights without restrictions?'
     },
     '(ES)': {
-        'Average': 'Un promedio de todos los indicadores entre componentes.',
+        'Average': 'Promedio ponderado de las puntuaciones sobre la exposición a amenazas, el acceso a protección y la libertad para ejercer derechos.',
         'Exposure': 'Exposición a amenazas: ¿Qué tan expuesta estuvo la persona a situaciones que ponen en riesgo su vida, sustento o derechos?',
         'Protection': 'Acceso a mecanismos de protección: ¿Qué tan accesibles y eficaces fueron los recursos, servicios o apoyos para protegerse o recuperarse frente a esas amenazas?',
         'Rights': 'Libertad para ejercer derechos: ¿Qué tanto margen tuvo la persona para ejercer sus derechos de manera plena y sin restricciones?'
