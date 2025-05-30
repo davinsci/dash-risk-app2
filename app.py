@@ -331,7 +331,7 @@ def update_chart(dimension_key, component_key, lang):
             ticksuffix='%'
         ),
         title=dict(
-            text=f"{translations[lang]['title']} – {translations[lang]['components'][component_key]} ({translations[lang]['dimensions'][dimension_key]})",
+            text=f"{translations[lang]['components'][component_key]} ({translations[lang]['dimensions'][dimension_key]})",
             x=0.5
         ),
         font=dict(
@@ -348,7 +348,7 @@ def update_chart(dimension_key, component_key, lang):
     cescription = component_descriptions[lang][component_key]
     intro_text = intro_descriptions[lang]
 
-    return fig, translations[lang]['title'], description, cescription, intro_text
+    return fig, translations[lang], description, cescription, intro_text
 
 if __name__ == '__main__':
     app.run_server(debug=False, port=8000, host='0.0.0.0')
